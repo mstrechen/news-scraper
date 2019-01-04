@@ -3,9 +3,9 @@ News scrapper from different sources written on Python3
 
 
 ##### Dev plan:
-- [ ] Make basic http server with request handling
-    - [ ] Static content handling
-    - [ ] GET dynamic methods handling
+- [x] Make basic http server with request handling
+    - [x] Static content handling
+    - [x] GET dynamic methods handling
 - [ ] UI
     - [ ] Basic UI for getting latest news
     - [ ] Sorting by tags interface
