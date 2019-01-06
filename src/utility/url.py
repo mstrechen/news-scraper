@@ -10,7 +10,7 @@ def parse_path(root : str, path : str):
     if(path == "/"):
         path = "/index.html"
     query = parse.parse_qs(query, keep_blank_values=True)
-    filename = path[path.rfind('/') + 1 : ]
+    filename = path[path.find('/') + 1 : ]
     return filename, root + path, get_extention(path), query
 
 
