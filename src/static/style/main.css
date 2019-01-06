@@ -118,6 +118,8 @@ input::placeholder{
     height: calc(100vh - 70px);
     overflow-y: scroll;
     overflow-x: hidden;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 #tagpanel ul{
@@ -125,4 +127,47 @@ input::placeholder{
 }
 #tagpanel li{
     font-size: 20px;
+}
+
+
+
+.article{
+    width: 100%;
+    height: 80px;
+    background: white;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.article-img{
+    background-size: cover;
+    height: 100%;
+    width: 120px;
+    border-radius: 10px 0px 0px 10px;
+    border-right: 1px solid black;
+    background-position: center;
+    display: block;
+    float: left;
+   
+}
+.article-content{
+    display: block;
+    float: left;
+    padding: 2px 4px;
+    width: calc(100% - 130px);
+}
+
+.article-content h2{
+    display: inline;
+    font-size: 20px;
+    overflow: hidden;
+    max-height: 23px;
+    display: block;
+}
+.article-content p{
+    font-size: 15px;
+    max-height: 54px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
