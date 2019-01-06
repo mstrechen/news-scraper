@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 
+                 'Lucida Sans Unicode', 
+                 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#headline{
+    overflow: hidden;
+    color: white;
+    height: 70px;
+    background-color: #1a1a1a;
+ }
+
+#name{
+    margin-left: 10px; 
+    display: block;
+}
+
+#headline h2 {
+    display: inline;
+    margin: 0;
+    padding: 2px;
+}
+#headline span {
+    font-size: 15px;
+}
+
+
+#menu li{
+    margin-left: 20px;
+    margin-bottom: 1px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+#menu{
+    display: inline-block;
+    width: 1000px;
+}
+#menu{
+    margin-left: 20px; 
+}
+
+#menu a{
+    font-size: 20px;
+    background: rgb(63, 59, 53);
+    text-decoration: none;
+    padding: 5px;
+    font-size: 20px;
+    color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    transition: background-color .1s ease-out;
+}
+#menu a:hover{
+    background: rgb(0, 32, 16);
+}
+
+input {
+    background: rgb(63, 59, 53);
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    transition: background-color .1s ease-out;
+}
+input:hover{
+    background: rgb(0, 32, 16);
+}
+
+input[type="text"]{
+    background: rgb(252, 252, 252);
+    color: black;
+    width: 160px;
+    transition: width .15s ease-out;
+    
+}
+
+input[type="text"]:focus {
+    width: 440px;
+}
+input[type="text"]:hover::placeholder{
+    color: rgb(210, 235, 217);
+    transition: color .25s ease-out;
+    
+}
+
+input::placeholder{
+    transition: color .1s ease-out;
+    color: rgb(65, 100, 57);
+}
+
+#query{
+    border-radius: 10px 0px 0px 10px;
+}
+#search_button{
+    border-radius: 0px 10px 10px 0px;
+    border-left: 0px;
+}
+
+#tagpanel {
+    padding: 5px;
+    box-sizing: border-box;
+    width: 200px;
+    background-color: #1a1a1a;;
+    float: left;
+    color: white;
+    height: calc(100vh - 70px);
+}
+
+#newslist {
+    width: calc(100% - 200px);
+    float: right;
+    background-color: wheat;
+    height: calc(100vh - 70px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#tagpanel ul{
+    padding: 5px;
+}
+#tagpanel li{
+    font-size: 20px;
+}
