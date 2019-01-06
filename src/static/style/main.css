@@ -55,6 +55,7 @@
 }
 #menu a:hover{
     background: rgb(0, 32, 16);
+    cursor: pointer;
 }
 
 input {
@@ -67,6 +68,15 @@ input {
     border-radius: 10px;
     transition: background-color .1s ease-out;
 }
+
+input[type="button"]{
+    cursor: pointer;
+}
+input[type="submit"]{
+    cursor: pointer;
+}
+
+
 input:hover{
     background: rgb(0, 32, 16);
 }
