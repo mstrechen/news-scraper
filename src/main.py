@@ -12,7 +12,7 @@ if __name__ == "__main__":
     try:
         import os
         PORT = int(os.environ["PORT"])
-    except ValueError:
+    except (ValueError, KeyError):
         PORT = 8080
 
     HTTP_THREAD = threading.Thread(target=run_http_server, args=(PORT,))
