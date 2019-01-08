@@ -6,10 +6,10 @@ News scrapper from different sources written on Python3
 - [x] Make basic http server with request handling
     - [x] Static content handling
     - [x] GET dynamic methods handling
-- [ ] UI
-    - [ ] Basic UI for getting latest news
+- [x] UI
+    - [x] Basic UI for getting latest news
     - [ ] Sorting by tags interface
-    - [ ] Searching interface
+    - [x] Searching interface
     - [ ] Updating data interface 
     - [ ] Prettify
 - [ ] Database
