@@ -1,8 +1,6 @@
 import json
 
-from datetime import datetime
-
-from .queries import get_feed
+from .queries import get_feed, get_searh_results
 
 DEFAULT_OFFSET = 0
 DEFAULT_LIMIT = 10
@@ -23,24 +21,21 @@ def get_offset_and_limit(args: dict):
         limit = DEFAULT_LIMIT
     return offset, limit
 
+def get_query(args: dict):
+    if "q" in args:
+        return args["q"][0]
+    return ""
+
 def feed(args: dict):
     offset, limit = get_offset_and_limit(args)
-    return json.dumps(get_feed(offset=offset, limit=limit), ensure_ascii=False)
+    articles = get_feed(offset=offset, limit=limit)
+    return json.dumps(articles, ensure_ascii=False)
 
 def search(args: dict):
-    tmp = [{}, {}]
-    tmp[1]["headline"] = u"На Львівщині порушили провадження щодо районного голови через корупцію"
-    tmp[1]["datetime"] = str(datetime(2018, 1, 5, 11, 59))
-    tmp[1]["img"] = "https://img.tsn.ua/cached/1533895990/tsn-ec97a3c0a2ace5bfabc1ed73666af320/thumbs/315x210/84/c4/4b48271dd867e71b5db3bbb6ecabc484.jpg"
-    tmp[1]["source"] = "TSN"
-    tmp[1]["text"] = "Something"
-    tmp[0]["headline"] = u"Спецслужби Росії готують інформаційні провокації проти України (ВІДЕО) "
-    tmp[0]["datetime"] = str(datetime(2018, 1, 5, 16, 21))
-    tmp[0]["img"] = ""
-    tmp[0]["source"] = "UA|TV"
-    tmp[0]["text"] = "Something other"
-
-    return json.dumps(tmp, ensure_ascii=False)
+    offset, limit = get_offset_and_limit(args)
+    query = get_query(args)
+    results = get_searh_results(query=query, offset=offset, limit=limit)
+    return json.dumps(results, ensure_ascii=False)
 
 def get_avaliable_tags(args: dict):
     tmp = {}
