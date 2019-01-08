@@ -36,8 +36,8 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
                 res = method(args)
                 self._set_headers_success()
                 self.wfile.write(bytes(res, "utf8"))
-            except Exception:
-                print("Something went wrong")
+            except Exception as e:
+                print("Something went wrong", e)
                 self._set_headers_error(500)
         else:
             self._set_headers_error()
