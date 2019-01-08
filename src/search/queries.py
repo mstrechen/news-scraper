@@ -27,7 +27,7 @@ def get_searh_results(query: str, offset: int = 0, limit: int = 10):
                 "type":       "best_fields",
                 "fields":     ["headline", "text"],
                 "tie_breaker": 0.3,
-                "fuzziness" : 1,
+                "fuzziness" : "AUTO",
                 }
             },
         "from" : offset,
