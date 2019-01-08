@@ -1,13 +1,13 @@
 from urllib import parse
 
-def get_extention(filename : str):
-    if(filename.find('.') != -1):
-        return filename[ filename.find('.') + 1 : ]
+def get_extention(filename: str):
+    if filename.find('.') != -1:
+        return filename[filename.find('.') + 1 : ]
     return ''
 
-def parse_path(root : str, path : str):
+def parse_path(root: str, path: str):
     path, query = parse.splitquery(path)
-    if(path == "/"):
+    if path == "/":
         path = "/index.html"
     query = parse.parse_qs(query, keep_blank_values=True)
     filename = path[path.find('/') + 1 : ]
