@@ -14,11 +14,11 @@
         <div id="name"><h2> MY</h2> <span>little</span> <h2>SCRAPPER </h2> </div>
         <ul id="menu">
             <li>
-                <a id="Show news feed" onclick="update_feed()">NEWS FEED</a>
+                <a id="Show news feed" onclick="make_feed()">NEWS FEED</a>
             </li>
             <li>
                 <input type="text" placeholder="Search query... " id="query"><!--
-                --><input type="submit" id="search_button" value="Search!" onclick="seacrh_by_query()">
+                --><input type="submit" id="search_button" value="Search!" onclick="search_by_query()">
             </li>
             <li>
                 <a id="list_of_sources" onclick="show_list_of_sources()">List of sources</a>
@@ -27,34 +27,11 @@
         </ul>
     </div>
     <div id="tagpanel">
-        <ul>
-            <li><label><input type="checkbox" checked> Tag#1</label></li>
-            <li><label><input type="checkbox" checked> Tag#2</label></li>
-            <li><label><input type="checkbox" checked> Tag#3</label></li>
+        <ul id="tagpanelul">
         </ul>
         <input type="button" id="apply_tags" onclick="apply_tags()" value="Apply tags">
     </div>
     <div id="newslist">
-            <div class="article">
-                    <div class="article-img" style="background-image: url(http://filearchive.cnews.ru/img/forum/2018/06/04/git1.jpg)">
-                    </div>
-                    <div class="article-content">
-                        <h2>Hey</h2>
-                        <p>This is an article !!!
-                            And this is the text
-                        </p>
-                    </div>
-                </div>
-                <div class="article">
-                        <div class="article-img" style="background-image: url(http://filearchive.cnews.ru/img/forum/2018/06/04/git1.jpg)">
-                        </div>
-                        <div class="article-content">
-                            <h2>Hey </h2>
-                            <p>This is an article !!!
-                                And this is the text
-                            </p>
-                        </div>
-                    </div>
                         
     </div>
 
