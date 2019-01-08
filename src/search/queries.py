@@ -1,4 +1,3 @@
-import json
 from elasticsearch import Elasticsearch
 es = Elasticsearch()
 
@@ -12,7 +11,7 @@ def es_result_to_list(res: dict):
 def get_feed(offset: int = 0, limit: int = 10):
     body = {"query": {"match_all": {}},
             "sort": [
-                {"unixtime": "desc" }
+                {"unixtime": "desc"}
             ],
             "from" : offset,
             "size" : limit
@@ -20,13 +19,13 @@ def get_feed(offset: int = 0, limit: int = 10):
     res = es.search(index="news", body=body)
     return es_result_to_list(res)
 
-def get_searh_results(query:str, offset: int = 0, limit: int = 10):
+def get_searh_results(query: str, offset: int = 0, limit: int = 10):
     body = {
         "query": {
             "multi_match" : {
                 "query":      query,
                 "type":       "best_fields",
-                "fields":     [ "headline", "text" ],
+                "fields":     ["headline", "text"],
                 "tie_breaker": 0.3
                 }
             },
