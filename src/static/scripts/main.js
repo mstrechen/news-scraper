@@ -123,9 +123,9 @@ class Article{
         res.className = "article"
         var img = document.createElement("div")
         if(this.img != "")
-            img.style = `background: url(${this.img})`
+            img.style = `background-image: url(${this.img})`
         else
-            img.style = "background: white"
+            img.style = "background-image: url(/img/noimage.png)"
         img.className = "article-img"
         res.appendChild(img)
         var headline = document.createElement("h2")
