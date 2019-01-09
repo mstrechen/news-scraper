@@ -64,8 +64,21 @@ function set_search_key_listener(){
       }
 }
 
+var add_more_news = function(){}
+
+
+function set_scroll_listener(){
+    var element = document.getElementById('newslist');
+    element.onscroll = function(e){
+        if(element.scrollHeight - element.scrollTop - element.clientHeight < 100){
+            add_more_news()
+        }
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () =>{
     set_search_key_listener()
+    set_scroll_listener()
     
     var req = getJsonFromUrl()
     make_tags_list()
@@ -157,24 +170,23 @@ class Article{
     }
 }
 
-function make_feed(){
-    make_feed_line()
-    NEWS_LISTED = 0
-
-    make_request("/feed", 
-        {
-            limit : LOAD_NEWS_LIMIT
-        }, 
-        make_news)
-}
-
 function append_feed(){
     make_request("/feed", 
         {
-            limit : LOAD_NEWS_LIMIT
+            limit : LOAD_NEWS_LIMIT,
+            offset : NEWS_LISTED
         }, 
         make_news)
 }
+
+function make_feed(){
+    make_feed_line()
+    NEWS_LISTED = 0
+    add_more_news = append_feed
+    document.getElementById("newslist").innerHTML = ""
+    append_feed()
+}
+
 
 
 
@@ -193,22 +205,7 @@ function append_news(newslist){
 }
 
 function make_news(newslist){
-    document.getElementById("newslist").innerHTML = ""
     append_news(newslist)
-}
-
-function search_by_query(){
-    make_search_query_line()
-    NEWS_LISTED = 0
-
-    var query_options = getJsonFromUrl()
-
-    make_request("/search", 
-        {
-            q : query_options["q"], 
-            limit : LOAD_NEWS_LIMIT
-        }, 
-        make_news)
 }
 
 function append_search_results(){
@@ -216,10 +213,20 @@ function append_search_results(){
     make_request("/search", 
         {
             q : query_options["q"], 
-            limit : LOAD_NEWS_LIMIT, 
-            offset : NEWS_LISTED}, 
-        append_news)
+            limit : LOAD_NEWS_LIMIT,
+            offset : NEWS_LISTED
+        }, 
+        make_news)
 }
+
+function search_by_query(){
+    make_search_query_line()
+    NEWS_LISTED = 0
+    add_more_news = append_search_results
+    document.getElementById("newslist").innerHTML = ""
+    append_search_results()
+}
+
 
 function show_list_of_sources(){
     make_listofsources_line()
