@@ -56,7 +56,6 @@ class Scraper(INewslistScraper):
             e_url = link.get_attribute("href")
             e_headline = link.text
             res.append(article.Article(e_url, e_headline, dt, tags=[tag]))
-            print(e_url, e_headline, dt, index)
         return res
 
 
