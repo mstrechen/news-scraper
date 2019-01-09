@@ -1,3 +1,4 @@
+from scraping import newslists
 
 def wait_until_elasticsearch_avaliable():
     from elasticsearch import Elasticsearch
@@ -20,6 +21,10 @@ def wait_until_elasticsearch_avaliable():
 
     logging.basicConfig(level=logging.DEBUG)
 
+
 def start_scraping():
-    print("Adding scripts...")
-    
+    print("adding scripts...")
+    newslists.init_newslists_scrapers()
+    newslists.init_article_scrapers()
+    print("scrapping just started!")
+    newslists.process_scraping()
