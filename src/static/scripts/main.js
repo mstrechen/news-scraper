@@ -53,7 +53,20 @@ function make_tags_list(){
     make_request("/tags", {}, make_tags)
 }
 
+function set_search_key_listener(){
+    document.getElementById('query').onkeypress = function(e){
+        if (!e) e = window.event;
+        var keyCode = e.keyCode || e.which;
+        if (keyCode == '13'){
+          search_by_query();
+          return false;
+        }
+      }
+}
+
 document.addEventListener("DOMContentLoaded", () =>{
+    set_search_key_listener()
+    
     var req = getJsonFromUrl()
     make_tags_list()
     if("type" in req){
