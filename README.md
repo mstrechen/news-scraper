@@ -1,5 +1,5 @@
-# news-scrapper
-News scrapper from different sources written on Python3
+# news-scraper
+News scraper from different sources written on Python3
 
 
 ##### Dev plan:
@@ -18,13 +18,13 @@ News scrapper from different sources written on Python3
     - [x] Basic operations (inserting, extracting by limit and offset)
     - [ ] Extracting by tags
     - [ ] Complex operation (extracting by search query, fuzzy search)
-- **Scrapper**
+- **Scraper**
     - [ ] Basic scraper classes
     - [ ] Runing in different threads
-    - [ ] Scrapping newslist
+    - [ ] Scraping newslist
         - [ ] TSN.ua
         - [ ] ukr.net/ua (also try to fix datetime)
-    - [ ] Scrapping full text of articles
+    - [ ] Scrpping full text of articles
         - [ ] TSN.ua
         - [ ] different sources of ukr.net:
             - [ ] internetua
