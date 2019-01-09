@@ -4,7 +4,8 @@ import threading
 
 from http_server import run_http_server
 from commands_executor import run_commands_executor
-from scraper import start_scraping
+from scraper import start_scraping, wait_until_elasticsearch_avaliable
+
 
 if __name__ == "__main__":
     try:
@@ -12,6 +13,8 @@ if __name__ == "__main__":
         PORT = int(os.environ["PORT"])
     except (ValueError, KeyError):
         PORT = 8080
+
+    wait_until_elasticsearch_avaliable()
 
     HTTP_THREAD = threading.Thread(target=run_http_server, args=(PORT,))
     HTTP_THREAD.daemon = True
