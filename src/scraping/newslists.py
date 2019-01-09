@@ -24,7 +24,7 @@ def scrap_newslists():
         for newslist in newslists:
             for article in newslist.get_articles_list():
                 articles.put_nowait(article)
-        time.sleep(60) # 1 minute
+        time.sleep(60 * 5) # update every 5 minutes
 
 def scrap_articles():
     es = Elasticsearch()
