@@ -168,8 +168,10 @@ input::placeholder{
     width: calc(100% - 130px);
 }
 
-.article-content h2{
+.article-content a{
     display: inline;
+    color: black;
+    font-weight: bold;
     font-size: 20px;
     overflow: hidden;
     max-height: 23px;

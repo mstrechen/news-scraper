@@ -126,11 +126,12 @@ function make_tags(listoftags){
 
 
 class Article{
-    constructor(headline, date, text, img){
+    constructor(headline, date, text, img, url){
         this.headline = headline
         this.date = date
         this.text = text
         this.img = img
+        this.url = url
     }
     to_html() {
         var res = document.createElement("div")
@@ -142,8 +143,9 @@ class Article{
             img.style = "background-image: url(/img/noimage.png)"
         img.className = "article-img"
         res.appendChild(img)
-        var headline = document.createElement("h2")
+        var headline = document.createElement("a")
         headline.innerText = this.headline
+        headline.href = this.url
         var text = document.createElement("p")
         text.innerText = this.text
         var artcontent = document.createElement("div")
@@ -183,7 +185,8 @@ function append_news(newslist){
             .appendChild(new Article(el["headline"],
                                      el["datetime"], 
                                      el["text"], 
-                                     el["img"]).to_html()
+                                     el["img"],
+                                     el["url"]).to_html()
                         )
     })
     NEWS_LISTED += newslist.length
