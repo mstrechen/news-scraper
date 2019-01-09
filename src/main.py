@@ -4,6 +4,7 @@ import threading
 
 from http_server import run_http_server
 from commands_executor import run_commands_executor
+from scraper import start_scraping
 
 if __name__ == "__main__":
     try:
@@ -18,4 +19,8 @@ if __name__ == "__main__":
 
     COMMAND_THREAD = threading.Thread(target=run_commands_executor)
     COMMAND_THREAD.start()
+
+    SCRAPING_THREAD = threading.Thread(target=start_scraping)
+    SCRAPING_THREAD.daemon = True
+    SCRAPING_THREAD.start()
     
