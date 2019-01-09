@@ -82,11 +82,11 @@ input:hover{
 }
 
 input[type="text"]{
+    text-transform: none;
     background: rgb(252, 252, 252);
     color: black;
     width: 160px;
-    transition: width .15s ease-out;
-    
+    transition: width .15s ease-out;   
 }
 
 input[type="text"]:focus {
