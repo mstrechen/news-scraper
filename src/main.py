@@ -21,7 +21,6 @@ if __name__ == "__main__":
     HTTP_THREAD.start()
 
     COMMAND_THREAD = threading.Thread(target=run_commands_executor)
-    COMMAND_THREAD.daemon = True
     COMMAND_THREAD.start()
 
     SCRAPING_THREAD = threading.Thread(target=start_scraping)
