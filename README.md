@@ -17,10 +17,10 @@ News scraper from different sources written on Python3
     - [ ] Configure filesystem for storing images
     - [x] Basic operations (inserting, extracting by limit and offset)
     - [ ] Extracting by tags
-    - [ ] Complex operation (extracting by search query, fuzzy search)
+    - [x] Complex operation (extracting by search query, fuzzy search)
 - **Scraper**
     - [ ] Basic scraper classes
-    - [ ] Runing in different threads
+    - [x] Runing in different threads
     - [ ] Scraping newslist
         - [ ] TSN.ua
         - [ ] ukr.net/ua (also try to fix datetime)
