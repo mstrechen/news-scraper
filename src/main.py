@@ -1,7 +1,4 @@
 #!/bin/python3
-"""
-    Main script
-"""
 
 import threading
 
