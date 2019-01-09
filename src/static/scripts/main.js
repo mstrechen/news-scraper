@@ -69,7 +69,8 @@ document.addEventListener("DOMContentLoaded", () =>{
         if(req["type"] == "listofsources"){
             show_list_of_sources()
         }
-    }
+    } else 
+        make_feed()
 });
 
 function make_search_query_line(){
