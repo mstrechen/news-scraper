@@ -8,15 +8,3 @@ class INewslistScraper(ABC):
     @abstractmethod
     def get_articles_list(self) -> list:
         pass
-
-    @abstractmethod
-    def get_source_url(self) -> str:
-        pass
-
-    @abstractmethod
-    def get_source_name(self) -> str:
-        pass
-
-    @abstractmethod
-    def get_tags(self) -> list:
-        pass

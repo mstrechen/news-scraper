@@ -76,13 +76,3 @@ class Scraper(INewslistScraper):
         for tag in self._tag_to_url:
             res += self._parse_by_tag(tag, self._tag_to_url[tag])
         return res
-
-
-    def get_source_url(self) -> str:
-        return ""
-
-    def get_source_name(self) -> str:
-        return ""
-
-    def get_tags(self) -> list:
-        return []
