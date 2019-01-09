@@ -1,10 +1,10 @@
 import queue
 import time
 import threading
+from elasticsearch import Elasticsearch
 
 
 from . import newslists_scrapers
-
 
 newslists = []
 articles = queue.Queue()
@@ -24,12 +24,18 @@ def scrap_newslists():
         for newslist in newslists:
             for article in newslist.get_articles_list():
                 articles.put_nowait(article)
-        time.sleep(20)
+        time.sleep(60) # 1 minute
 
 def scrap_articles():
+    es = Elasticsearch()
     while True:
         article = articles.get(block=True)
-        print(article.get_source())
+        if not article.already_exists(es):
+            src = article.get_source()
+            if src in article_scrapers:
+                article_scrapers[src].get_article(article)
+            article.insert_into_es(es) 
+        
 
 def process_scraping():
     ARTICLES_THREAD = threading.Thread(target=scrap_articles)
