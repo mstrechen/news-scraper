@@ -21,6 +21,17 @@ class Article:
     def _normilize_time_for_es(self):
         return self.datetime.strftime("%Y-%m-%dT%H:%M:%S")
 
+    def already_exists(self, es: Elasticsearch):
+        body = {
+            "query" : {
+                "match" : {
+                    "url" : self.url
+                }
+            }
+        }
+        result = es.search(index="news", body=body)["hits"]["total"]
+        return result == 1
+
     def insert_into_es(self, es: Elasticsearch):
         es.index(index="news", doc_type="article", body={
             "url": self.url,
