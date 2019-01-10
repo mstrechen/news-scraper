@@ -23,8 +23,7 @@ def init_article_scrapers():
 def scrap_newslists():
     while True:
         for newslist in newslists:
-            for article in newslist.get_articles_list():
-                articles.put_nowait(article)
+            newslist.push_articles_list(articles)
         time.sleep(60 * 5) # update every 5 minutes
 
 def scrap_articles():

@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from queue import Queue
 
 class INewslistScraper(ABC):
     def __init__(self, limit: int = 100):
@@ -6,5 +7,5 @@ class INewslistScraper(ABC):
         self.limit = limit
 
     @abstractmethod
-    def get_articles_list(self) -> list:
+    def push_articles_list(self, queue: Queue):
         pass

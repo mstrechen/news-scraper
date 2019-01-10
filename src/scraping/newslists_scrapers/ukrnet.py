@@ -1,3 +1,4 @@
+from queue import Queue
 from datetime import datetime, timedelta
 
 
@@ -11,20 +12,20 @@ class Scraper(INewslistScraper):
     def __init__(self, limit: int = 100):
         INewslistScraper.__init__(self, limit)
         self._tag_to_url = {
-            #"politics" : "https://www.ukr.net/news/politika.html",
-            "economics" : "https://www.ukr.net/news/jekonomika.html",
-            #"accidents" : "https://www.ukr.net/news/proisshestvija.html",
-            #"society" : "https://www.ukr.net/news/society.html",
-            #"technologies" : "https://www.ukr.net/news/tehnologii.html",
-            #"science" : "https://www.ukr.net/news/science.html",
-            #"auto" : "https://www.ukr.net/news/avto.html",
-            #"sport" : "https://www.ukr.net/news/sport.html",
-            #"health" : "https://www.ukr.net/news/zdorove.html",
-            #"celebrities" : "https://www.ukr.net/news/show_biznes.html",
-            #"global" : "https://www.ukr.net/news/za_rubezhom.html",
-            #"fun" : "https://www.ukr.net/news/kurezy.html",
-            #"photoreport" : "https://www.ukr.net/news/fotoreportazh.html",
-            #"video" : "https://www.ukr.net/news/video.html"
+           # "politics" : "https://www.ukr.net/news/politika.html",
+           # "economics" : "https://www.ukr.net/news/jekonomika.html",
+           # "accidents" : "https://www.ukr.net/news/proisshestvija.html",
+           # "society" : "https://www.ukr.net/news/society.html",
+           # "technologies" : "https://www.ukr.net/news/tehnologii.html",
+           # "science" : "https://www.ukr.net/news/science.html",
+           # "auto" : "https://www.ukr.net/news/avto.html",
+           # "sport" : "https://www.ukr.net/news/sport.html",
+           # "health" : "https://www.ukr.net/news/zdorove.html",
+           # "celebrities" : "https://www.ukr.net/news/show_biznes.html",
+           # "global" : "https://www.ukr.net/news/za_rubezhom.html",
+           # "fun" : "https://www.ukr.net/news/kurezy.html",
+           # "photoreport" : "https://www.ukr.net/news/fotoreportazh.html",
+           # "video" : "https://www.ukr.net/news/video.html"
         }
         self.driver = driver.driver
         self.xpath = {
@@ -51,7 +52,7 @@ class Scraper(INewslistScraper):
             return datetime.today() + timedelta(hours=h, minutes=m)
         return self._date_from_ukr_to_datetime(s, index)
 
-    def _parse_by_tag(self, tag, url) -> list:
+    def _parse_by_tag(self, tag, url, queue: Queue):
         dr = self.driver
         dr.get(url)
         elems = dr.find_elements_by_xpath(self.xpath["absolute_article_path"])
@@ -59,7 +60,6 @@ class Scraper(INewslistScraper):
             self._load_more()
             elems = dr.find_elements_by_xpath(self.xpath["absolute_article_path"])
 
-        res = []
         for e, index in zip(elems, range(self.limit)):
             dt = e.find_element_by_tag_name("time")
             dt = self._convert_datetime(dt.text, index)
@@ -68,12 +68,11 @@ class Scraper(INewslistScraper):
             link = e.find_element_by_tag_name("a")
             e_url = link.get_attribute("href")
             e_headline = link.text
-            res.append(article.Article(e_url, e_headline, dt, tags=[tag]))
-        return res
+            queue.put_nowait(article.Article(e_url, e_headline, dt, tags=[tag]))
 
 
-    def get_articles_list(self) -> list:
-        res = []
+
+    def push_articles_list(self, queue: Queue):
         for tag in self._tag_to_url:
-            res += self._parse_by_tag(tag, self._tag_to_url[tag])
-        return res
+            self._parse_by_tag(tag, self._tag_to_url[tag], queue)
+
