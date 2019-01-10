@@ -4,7 +4,7 @@ def wait_until_elasticsearch_avaliable():
     from elasticsearch import Elasticsearch
     import time
 
-    es = Elasticsearch()
+    es = Elasticsearch(hosts=[{'host' : 'elasticsearch', 'port' : 9200}])
     print("waiting until elasticsearch health becomes yellow (timeout = 5 mins)")
 
     import logging

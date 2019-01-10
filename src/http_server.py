@@ -43,8 +43,8 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
             self._set_headers_error()
 
 def run_http_server(port):
-    print('starting server...')
-    server_address = ('127.0.0.1', port)
+    print('starting server on port', port, '...')
+    server_address = ('0.0.0.0', port)
     httpd = HTTPServer(server_address, HTTPRequestHandler)
     print('running server...')
     httpd.serve_forever()

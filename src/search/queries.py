@@ -1,5 +1,5 @@
 from elasticsearch import Elasticsearch
-es = Elasticsearch()
+es = Elasticsearch([{'host' : 'elasticsearch', 'port' : 9200}])
 
 def es_result_to_list(res: dict):
     res_list = []

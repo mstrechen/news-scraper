@@ -27,7 +27,7 @@ def scrap_newslists():
         time.sleep(60 * 5) # update every 5 minutes
 
 def scrap_articles():
-    es = Elasticsearch()
+    es = Elasticsearch([{'host' : 'elasticsearch', 'port' : 9200}])
     while True:
         article = articles.get(block=True)
         src = article.get_source()
