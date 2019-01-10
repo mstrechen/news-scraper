@@ -10,25 +10,25 @@ News scraper from different sources written on Python3
     - [x] Basic UI for getting latest news
     - [ ] Sorting by tags interface
     - [x] Searching interface
-    - [ ] Updating data interface 
+    - [x] Updating data interface 
     - [ ] Prettify
 - **Database**
     - [x] Configure ElasticSearch
-    - [ ] Configure filesystem for storing images
+    - [x] Configure filesystem for storing images
     - [x] Basic operations (inserting, extracting by limit and offset)
     - [ ] Extracting by tags
     - [x] Complex operation (extracting by search query, fuzzy search)
 - **Scraper**
-    - [ ] Basic scraper classes
+    - [x] Basic scraper classes
     - [x] Runing in different threads
-    - [ ] Scraping newslist
-        - [ ] TSN.ua
-        - [ ] ukr.net/ua (also try to fix datetime)
-    - [ ] Scrpping full text of articles
-        - [ ] TSN.ua
-        - [ ] different sources of ukr.net:
-            - [ ] internetua
-            - [ ] depo.ua
+    - [x] Scraping newslist
+        - [x] TSN.ua
+        - [x] ukr.net/ua (also try to fix datetime)
+    - [x] Scrpping full text of articles
+        - [x] TSN.ua
+        - [x] different sources of ukr.net:
+            - [x] internetua
+            - [x] uabanker
             
 
     
