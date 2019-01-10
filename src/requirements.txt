@@ -1,0 +1,6 @@
+python-resize-image
+selenium
+lxml
+BeautifulSoup4
+elasticsearch
+PyVirtualDisplay
