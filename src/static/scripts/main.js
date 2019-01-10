@@ -170,11 +170,30 @@ class Article{
     }
 }
 
+function get_active_tags(){
+    var res = []
+    for(var key in TAGS)
+        if(document.getElementById("tag-" + key).checked)
+            res.push(key)
+    
+    return res
+}
+
 function append_feed(){
-    make_request("/feed", 
+    var active_tags = get_active_tags()
+    if(active_tags.length == 0)
+        make_request("/feed", 
+            {
+                limit : LOAD_NEWS_LIMIT,
+                offset : NEWS_LISTED
+            }, 
+            make_news)
+    else
+        make_request("/feed", 
         {
             limit : LOAD_NEWS_LIMIT,
-            offset : NEWS_LISTED
+            offset : NEWS_LISTED,
+            tags : active_tags
         }, 
         make_news)
 }
@@ -233,5 +252,5 @@ function show_list_of_sources(){
 }
 
 function apply_tags(){
-
+    make_feed()
 }
