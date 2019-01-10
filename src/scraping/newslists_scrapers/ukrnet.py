@@ -1,31 +1,32 @@
 from datetime import datetime, timedelta
-from selenium import webdriver
+
 
 from .INewslistScraper import INewslistScraper
 
 
 from .. import article
+from .. import driver
 
 class Scraper(INewslistScraper):
     def __init__(self, limit: int = 100):
         INewslistScraper.__init__(self, limit)
         self._tag_to_url = {
-            "politics" : "https://www.ukr.net/news/politika.html",
+            #"politics" : "https://www.ukr.net/news/politika.html",
             "economics" : "https://www.ukr.net/news/jekonomika.html",
-            "accidents" : "https://www.ukr.net/news/proisshestvija.html",
-            "society" : "https://www.ukr.net/news/society.html",
-            "technologies" : "https://www.ukr.net/news/tehnologii.html",
-            "science" : "https://www.ukr.net/news/science.html",
-            "auto" : "https://www.ukr.net/news/avto.html",
-            "sport" : "https://www.ukr.net/news/sport.html",
-            "health" : "https://www.ukr.net/news/zdorove.html",
-            "celebrities" : "https://www.ukr.net/news/show_biznes.html",
-            "global" : "https://www.ukr.net/news/za_rubezhom.html",
-            "fun" : "https://www.ukr.net/news/kurezy.html",
-            "photoreport" : "https://www.ukr.net/news/fotoreportazh.html",
-            "video" : "https://www.ukr.net/news/video.html"
+            #"accidents" : "https://www.ukr.net/news/proisshestvija.html",
+            #"society" : "https://www.ukr.net/news/society.html",
+            #"technologies" : "https://www.ukr.net/news/tehnologii.html",
+            #"science" : "https://www.ukr.net/news/science.html",
+            #"auto" : "https://www.ukr.net/news/avto.html",
+            #"sport" : "https://www.ukr.net/news/sport.html",
+            #"health" : "https://www.ukr.net/news/zdorove.html",
+            #"celebrities" : "https://www.ukr.net/news/show_biznes.html",
+            #"global" : "https://www.ukr.net/news/za_rubezhom.html",
+            #"fun" : "https://www.ukr.net/news/kurezy.html",
+            #"photoreport" : "https://www.ukr.net/news/fotoreportazh.html",
+            #"video" : "https://www.ukr.net/news/video.html"
         }
-        self.driver = webdriver.Firefox()
+        self.driver = driver.driver
         self.xpath = {
             "absolute_article_path" : '//*[@id="main"]/div/article/section'
         }

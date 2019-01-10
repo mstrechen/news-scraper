@@ -1,6 +1,6 @@
 import importlib
 
-__all__ = ["ukrnet"]
+__all__ = ["ukrnet", "tsn"]
 
 scrapers = []
 
