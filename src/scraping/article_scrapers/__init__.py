@@ -1,6 +1,6 @@
 import importlib
 
-__all__ = ["internetua", "uabanker"]
+__all__ = ["internetua", "uabanker", "tsnua"]
 
 scrapers = {}
 
