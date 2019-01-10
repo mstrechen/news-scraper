@@ -45,6 +45,8 @@ class Article:
             return not bool(res["hits"][0]["_source"]["text"])
         return True
 
+    def make_tags_into_string(self, tags):
+        return " ".join(sorted(tags))
 
     def insert_into_es(self, es: Elasticsearch):
         es.index(index="news", doc_type="article", body={
@@ -56,7 +58,7 @@ class Article:
             "src_name": self.src_name,
             "text": self.text,
             "richtext" : self.richtext,
-            "tags": self.tags
+            "tags": self.make_tags_into_string(self.tags)
         })
 
     def update_in_es(self, es: Elasticsearch):
@@ -78,5 +80,5 @@ class Article:
             "src_name": self.src_name,
             "text": self.text,
             "richtext" : self.richtext,
-            "tags": self.tags
+            "tags": self.make_tags_into_string(self.tags)
         })
