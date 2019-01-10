@@ -1,9 +1,19 @@
 import json
+import cgi
 
 from .queries import get_feed, get_searh_results
 
+
 DEFAULT_OFFSET = 0
 DEFAULT_LIMIT = 10
+
+def cut_symbols_of_text(res: list):
+    for r in res:
+        r["text"] = r["text"][:300]
+        r["richtext"] = cgi.escape(r["richtext"][:300])
+
+        
+
 def get_offset_and_limit(args: dict):
     if "offset" in args:
         try:
@@ -28,13 +38,18 @@ def get_query(args: dict):
 
 def feed(args: dict):
     offset, limit = get_offset_and_limit(args)
-    articles = get_feed(offset=offset, limit=limit)
+    if not "tags" in args:
+        articles = get_feed([], offset=offset, limit=limit)
+    else:
+        articles = get_feed(args["tags"][0].split(','), offset=offset, limit=limit)
+    cut_symbols_of_text(articles)
     return json.dumps(articles, ensure_ascii=False)
 
 def search(args: dict):
     offset, limit = get_offset_and_limit(args)
     query = get_query(args)
     results = get_searh_results(query=query, offset=offset, limit=limit)
+    cut_symbols_of_text(results)
     return json.dumps(results, ensure_ascii=False)
 
 def get_avaliable_tags(args: dict):
