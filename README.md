@@ -8,7 +8,7 @@ News scraper from different sources written on Python3
     - [x] GET dynamic methods handling
 - **UI**
     - [x] Basic UI for getting latest news
-    - [ ] Sorting by tags interface
+    - [x] Sorting by tags interface
     - [x] Searching interface
     - [x] Updating data interface 
     - [ ] Prettify
@@ -16,7 +16,7 @@ News scraper from different sources written on Python3
     - [x] Configure ElasticSearch
     - [x] Configure filesystem for storing images
     - [x] Basic operations (inserting, extracting by limit and offset)
-    - [ ] Extracting by tags
+    - [x] Extracting by tags
     - [x] Complex operation (extracting by search query, fuzzy search)
 - **Scraper**
     - [x] Basic scraper classes
@@ -29,6 +29,10 @@ News scraper from different sources written on Python3
         - [x] different sources of ukr.net:
             - [x] internetua
             - [x] uabanker
+- **Deploying**
+    - [ ] configure docker-compose.yml
+    - [ ] deploy on cloud
+
             
 
     
