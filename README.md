@@ -30,9 +30,19 @@ News scraper from different sources written on Python3
             - [x] internetua
             - [x] uabanker
 - **Deploying**
-    - [ ] configure docker-compose.yml
+    - [x] configure docker-compose.yml
     - [ ] deploy on cloud
 
-            
 
-    
+### Run by your own!  
+In your shell just type:  
+```
+    git clone https://github.com/mstrechen/news-scraper.git
+    cd news-scraper
+    docker-compose build
+    docker-compose up
+```
+
+Now you have scraper hosted on 8080 port. Note that it requires some time to scrap content from different resources (about 3 minutes if connection is quite fast). 
+
+
