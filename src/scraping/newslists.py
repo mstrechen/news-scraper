@@ -38,8 +38,7 @@ def scrap_articles():
         else:
             if src in article_parsers:
                 article_parsers[src].update_article(article)
-            article.insert_into_es(es)
-
+                article.insert_into_es(es)
 
 def process_scraping():
     ARTICLES_THREAD = threading.Thread(target=scrap_articles)
