@@ -42,7 +42,7 @@ class Article:
         }
         res = es.search(index="news", body=body)["hits"]
         if res["total"] >= 1:
-            return bool(res["hits"][0]["_source"]["text"])
+            return not bool(res["hits"][0]["_source"]["text"])
         return True
 
 
@@ -67,7 +67,8 @@ class Article:
                 }
             }
         }
-        article_id = es.search(index="news", doc_type="article", body=body)["hits"]["hits"][0]["_id"]
+        article_id = \
+            es.search(index="news", doc_type="article", body=body)["hits"]["hits"][0]["_id"]
         es.index(index="news", doc_type="article", id=article_id, body={
             "url": self.url,
             "headline": self.headline,
