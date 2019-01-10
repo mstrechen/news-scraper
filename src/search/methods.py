@@ -53,12 +53,26 @@ def search(args: dict):
     return json.dumps(results, ensure_ascii=False)
 
 def get_avaliable_tags(args: dict):
-    tmp = {}
-    tmp["tag1"] = "Tag #1"
-    tmp["tag2"] = "Tag #2"
-    tmp["tag3"] = "Tag #3"
-    tmp["tag4"] = "Tag #4"
-    return json.dumps(tmp, ensure_ascii=False)
+    get_avaliable_tags.tags = {
+        "politics" : "Politics",
+        "economics" : "Economics",
+        "accidents" : "Accidents",
+        "society" : "Society",
+        "technologies" : "Technologies",
+        "science" : "Science",
+        "auto" : "Automobiles",
+        "sport" : "Sports",
+        "health" : "Health and helathcare",
+        "celebrities" : "Celebrities life",
+        "global" : "Global (foreign) news",
+        "fun" : "Fun things",
+        "photoreport" : "Photoreports",
+        "video" : "Videos",
+        "ukraine" : "Ukrainian news",
+        "lady" : "Ladies stuff",
+        "interesting" : "Some curious things"
+    }
+    return json.dumps(get_avaliable_tags.tags, ensure_ascii=False)
 
 
 avaliable = {
