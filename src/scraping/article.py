@@ -30,10 +30,45 @@ class Article:
             }
         }
         result = es.search(index="news", body=body)["hits"]["total"]
-        return result == 1
+        return result >= 1
+
+    def can_be_updated(self, es: Elasticsearch):
+        body = {
+            "query" : {
+                "match" : {
+                    "url" : self.url
+                }
+            }
+        }
+        res = es.search(index="news", body=body)["hits"]
+        if res["total"] >= 1:
+            return bool(res["hits"][0]["_source"]["text"])
+        return True
+
 
     def insert_into_es(self, es: Elasticsearch):
         es.index(index="news", doc_type="article", body={
+            "url": self.url,
+            "headline": self.headline,
+            "datetime": self._normilize_time_for_es(),
+            "img": self.img,
+            "src_url": self.get_source(),
+            "src_name": self.src_name,
+            "text": self.text,
+            "richtext" : self.richtext,
+            "tags": self.tags
+        })
+
+    def update_in_es(self, es: Elasticsearch):
+        body = {
+            "query" : {
+                "match" : {
+                    "url" : self.url
+                }
+            }
+        }
+        article_id = es.search(index="news", doc_type="article", body=body)["hits"]["hits"][0]["_id"]
+        es.index(index="news", doc_type="article", id=article_id, body={
             "url": self.url,
             "headline": self.headline,
             "datetime": self._normilize_time_for_es(),
