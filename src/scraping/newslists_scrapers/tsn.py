@@ -47,7 +47,8 @@ class Scraper(INewslistScraper):
             self._load_more()
             prev_cnt = len(elems)
             elems = dr.find_elements_by_xpath(self.xpath["absolute_article_path"])
-
+        print("Success...")
+        
         for e, _ in zip(elems, range(self.limit)):
             e_url = e.get_attribute("href")
             e_headline = e.text
