@@ -1,11 +1,10 @@
 import requests
-from lxml import html, etree
-from bs4 import BeautifulSoup
+from lxml import html
+import resizeimage
 
 from ..article import Article
 
 from .IArticleScraper import IArticleScraper
-from elasticsearch import Elasticsearch
 
 
 class Scraper(IArticleScraper):
@@ -19,7 +18,12 @@ class Scraper(IArticleScraper):
         text = self.elem_to_str(text)
         article.text = self.get_pure_text(text)
         article.richtext = text
+        img = tree.xpath("/html/body/main/div/div/div/div/div/article/img/@src")
         img = tree.xpath("//img/@src")[0]
         img = str(img)
 
-        article.img = "/storage/" + self.process_image("http://" + article.get_source(), img)
+        try:
+            article.img = "/storage/" +\
+            self.process_image("http://" + article.get_source(), img, height=100)
+        except resizeimage.imageexceptions.ImageSizeError:
+            article.img = ""
