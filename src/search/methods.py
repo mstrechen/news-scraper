@@ -54,23 +54,23 @@ def search(args: dict):
 
 def get_avaliable_tags(args: dict):
     get_avaliable_tags.tags = {
-        "politics" : "Politics",
-        "economics" : "Economics",
-        "accidents" : "Accidents",
-        "society" : "Society",
-        "technologies" : "Technologies",
-        "science" : "Science",
-        "auto" : "Automobiles",
-        "sport" : "Sports",
-        "health" : "Health and helathcare",
-        "celebrities" : "Celebrities life",
-        "global" : "Global (foreign) news",
-        "fun" : "Fun things",
-        "photoreport" : "Photoreports",
-        "video" : "Videos",
-        "ukraine" : "Ukrainian news",
-        "lady" : "Ladies stuff",
-        "interesting" : "Some curious things"
+        "accidents"     : "Accidents",
+        "auto"          : "Automobiles",
+        "celebrities"   : "Celebrities life",
+        "economics"     : "Economics",
+        "fun"           : "Fun things",
+        "global"        : "Global (foreign) news",
+        "health"        : "Health and helathcare",
+        "lady"          : "Ladies stuff",
+        "photoreport"   : "Photoreports",
+        "politics"      : "Politics",
+        "science"       : "Science",
+        "society"       : "Society",
+        "interesting"   : "Some curious things",
+        "sport"         : "Sports",
+        "technologies"  : "Technologies",
+        "ukraine"       : "Ukrainian news",
+        "video"         : "Videos",
     }
     return json.dumps(get_avaliable_tags.tags, ensure_ascii=False)
 
