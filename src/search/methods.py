@@ -12,7 +12,7 @@ def cut_symbols_of_text(res: list):
         r["text"] = r["text"][:300]
         r["richtext"] = cgi.escape(r["richtext"][:300])
 
-        
+
 
 def get_offset_and_limit(args: dict):
     if "offset" in args:

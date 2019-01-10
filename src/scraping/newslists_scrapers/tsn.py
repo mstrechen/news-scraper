@@ -1,9 +1,10 @@
+import selenium
+
 from queue import Queue
 from datetime import datetime
 
 from .INewslistScraper import INewslistScraper
 
-import selenium
 
 from .. import article
 from .. import driver
@@ -28,7 +29,8 @@ class Scraper(INewslistScraper):
 
     def _load_more(self):
         try:
-            button = self.driver.find_element_by_xpath('//*[@id="main-content"]/section/div[12]/div/a')
+            button = \
+                self.driver.find_element_by_xpath('//*[@id="main-content"]/section/div[12]/div/a')
             self.driver.execute_script("arguments[0].scrollIntoView()", button)
             button.click()
         except (selenium.common.exceptions.ElementClickInterceptedException,\
@@ -48,7 +50,7 @@ class Scraper(INewslistScraper):
             prev_cnt = len(elems)
             elems = dr.find_elements_by_xpath(self.xpath["absolute_article_path"])
         print("Success...")
-        
+
         for e, _ in zip(elems, range(self.limit)):
             e_url = e.get_attribute("href")
             e_headline = e.text

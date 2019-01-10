@@ -12,20 +12,20 @@ class Scraper(INewslistScraper):
     def __init__(self, limit: int = 100):
         INewslistScraper.__init__(self, limit)
         self._tag_to_url = {
-           # "politics" : "https://www.ukr.net/news/politika.html",
-           # "economics" : "https://www.ukr.net/news/jekonomika.html",
-           # "accidents" : "https://www.ukr.net/news/proisshestvija.html",
-           # "society" : "https://www.ukr.net/news/society.html",
-           # "technologies" : "https://www.ukr.net/news/tehnologii.html",
-           # "science" : "https://www.ukr.net/news/science.html",
-           # "auto" : "https://www.ukr.net/news/avto.html",
-           # "sport" : "https://www.ukr.net/news/sport.html",
-           # "health" : "https://www.ukr.net/news/zdorove.html",
-           # "celebrities" : "https://www.ukr.net/news/show_biznes.html",
-           # "global" : "https://www.ukr.net/news/za_rubezhom.html",
-           # "fun" : "https://www.ukr.net/news/kurezy.html",
-           # "photoreport" : "https://www.ukr.net/news/fotoreportazh.html",
-           # "video" : "https://www.ukr.net/news/video.html"
+            "politics" : "https://www.ukr.net/news/politika.html",
+            "economics" : "https://www.ukr.net/news/jekonomika.html",
+            "accidents" : "https://www.ukr.net/news/proisshestvija.html",
+            "society" : "https://www.ukr.net/news/society.html",
+            "technologies" : "https://www.ukr.net/news/tehnologii.html",
+            "science" : "https://www.ukr.net/news/science.html",
+            "auto" : "https://www.ukr.net/news/avto.html",
+            "sport" : "https://www.ukr.net/news/sport.html",
+            "health" : "https://www.ukr.net/news/zdorove.html",
+            "celebrities" : "https://www.ukr.net/news/show_biznes.html",
+            "global" : "https://www.ukr.net/news/za_rubezhom.html",
+            "fun" : "https://www.ukr.net/news/kurezy.html",
+            "photoreport" : "https://www.ukr.net/news/fotoreportazh.html",
+            "video" : "https://www.ukr.net/news/video.html"
         }
         self.driver = driver.driver
         self.xpath = {
@@ -56,8 +56,10 @@ class Scraper(INewslistScraper):
         dr = self.driver
         dr.get(url)
         elems = dr.find_elements_by_xpath(self.xpath["absolute_article_path"])
-        while len(elems) < self.limit:
+        prev_cnt = 0
+        while len(elems) < self.limit and len(elems) != prev_cnt:
             self._load_more()
+            prev_cnt = len(elems)
             elems = dr.find_elements_by_xpath(self.xpath["absolute_article_path"])
 
         for e, index in zip(elems, range(self.limit)):
@@ -75,4 +77,3 @@ class Scraper(INewslistScraper):
     def push_articles_list(self, queue: Queue):
         for tag in self._tag_to_url:
             self._parse_by_tag(tag, self._tag_to_url[tag], queue)
-

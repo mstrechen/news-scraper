@@ -19,6 +19,24 @@ def wait_until_elasticsearch_avaliable():
     else:
         raise TimeoutError("Elasticsearch failed to start.")
 
+    mapping = {"mappings": {
+        "article": {
+            "properties": {
+                "url" : {"type":  "keyword"},
+                "headline" : {"type" : "text"},
+                "datetime" : 	{"type" : "date"},
+                "img" : 			{"type" : "keyword"},
+                "src_url" : 	{"type" : "keyword"},
+                "src_name" : 	{"type" : "keyword"},
+                "text" : 			{"type" : "text"},
+                "richtext" : 	{"enabled" : False},
+                "tags" : 			{"type" : "text"}
+            }
+        }
+        }
+    }
+    es.indices.create(index='news', ignore=400, body=mapping)
+
     logging.basicConfig(level=logging.DEBUG)
 
 

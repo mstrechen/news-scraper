@@ -70,7 +70,8 @@ class Article:
             }
         }
         article_id = \
-            es.search(index="news", doc_type="article", body=body, request_timeout=1000)["hits"]["hits"][0]["_id"]
+            es.search(index="news", doc_type="article", \
+                      body=body, request_timeout=1000)["hits"]["hits"][0]["_id"]
         es.index(index="news", doc_type="article", id=article_id, body={
             "url": self.url,
             "headline": self.headline,
