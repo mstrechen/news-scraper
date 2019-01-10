@@ -29,7 +29,7 @@ class Article:
                 }
             }
         }
-        result = es.search(index="news", body=body)["hits"]["total"]
+        result = es.search(index="news", body=body, request_timeout=1000)["hits"]["total"]
         return result >= 1
 
     def can_be_updated(self, es: Elasticsearch):
@@ -40,7 +40,7 @@ class Article:
                 }
             }
         }
-        res = es.search(index="news", body=body)["hits"]
+        res = es.search(index="news", body=body, request_timeout=1000)["hits"]
         if res["total"] >= 1:
             return not bool(res["hits"][0]["_source"]["text"])
         return True
@@ -59,7 +59,7 @@ class Article:
             "text": self.text,
             "richtext" : self.richtext,
             "tags": self.make_tags_into_string(self.tags)
-        })
+        }, request_timeout=1000)
 
     def update_in_es(self, es: Elasticsearch):
         body = {
@@ -70,7 +70,7 @@ class Article:
             }
         }
         article_id = \
-            es.search(index="news", doc_type="article", body=body)["hits"]["hits"][0]["_id"]
+            es.search(index="news", doc_type="article", body=body, request_timeout=1000)["hits"]["hits"][0]["_id"]
         es.index(index="news", doc_type="article", id=article_id, body={
             "url": self.url,
             "headline": self.headline,
@@ -81,4 +81,4 @@ class Article:
             "text": self.text,
             "richtext" : self.richtext,
             "tags": self.make_tags_into_string(self.tags)
-        })
+        }, request_timeout=1000)
