@@ -19,6 +19,8 @@ static_ext_list = {
     "js" : "application/javascript",
     "png" : "image/x-icon",
     "jpg" : "image/x-icon",
+    "jpeg" : "image/x-icon",
+    "gif" : "image/x-icon",
     "ico" : "image/x-icon",
     "html" : "text/html"
 }
