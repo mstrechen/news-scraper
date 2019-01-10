@@ -16,9 +16,13 @@ class Scraper(IArticleScraper):
         src = requests.get(article.url).content
         tree = html.fromstring(src)
         print(article.url)
-        text = tree.xpath('//*[@id="main-content"]//' +
-                          'article[contains(@class, "u-content-read") or ' +
-                          'contains(@class, "c-main")]')[0]
+        try:
+            text = tree.xpath('//*[@id="main-content"]//' +
+                            'article[contains(@class, "u-content-read") or ' +
+                            'contains(@class, "c-main")]')[0]
+        except IndexError:
+            return
+        
         text = self.elem_to_str(text)
         
         article.text = self.get_pure_text(text)
